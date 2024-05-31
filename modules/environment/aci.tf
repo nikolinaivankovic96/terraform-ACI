@@ -43,7 +43,7 @@ resource "azurerm_container_group" "main" {
       secret = {
       "ssl.crt"    = data.azurerm_key_vault_secret.ssl_crt.value
       "ssl.key"    = data.azurerm_key_vault_secret.ssl_key.value
-      "nginx.conf" = data.azurerm_key_vault_secret.nginx_conf.value
+      "nginx.conf" = filebase64("${path.module}/nginx/nginx.conf")
         }
     }
   }
